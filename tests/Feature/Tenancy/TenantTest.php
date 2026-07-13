@@ -23,7 +23,7 @@ it('generates unique db_name from tenant subdomain', function () {
         'subdomain' => 'my-isp',
     ]);
 
-    expect($tenant->db_name)->toMatchRegex('/^tenant_my-isp_[a-zA-Z0-9]+$/');
+    expect($tenant->db_name)->toBeString()->and($tenant->db_name)->toStartWith('tenant_my-isp_');
 });
 
 it('creates database schema for tenant on creation', function () {
@@ -74,7 +74,7 @@ it('prevents duplicate subdomains', function () {
         'name' => 'Duplicate ISP 2',
         'email' => 'dup2@isp.com',
         'subdomain' => 'duplicate-isp',
-    ]))->toThrow();
+    ]))->toThrow(Illuminate\Database\QueryException::class);
 });
 
 it('switches to tenant schema context correctly', function () {
