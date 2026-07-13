@@ -1,82 +1,43 @@
 ```
-# Test directories and cache
-.tests/
-.phpunit.result.cache
-coverage/
-htmlcov/
-*.log
-
-# Environment specific
+# Laravel-specific ignores
+vendor/
+composer.lock
 .env
 .env.local
-*.env.*
+.env.*
+!.env.example
 
-# Dependencies
-vendor/
-node_modules/
+# PHP
+*.php~
+*.php.bak
+*.phtml~
 
-# IDE and editor files
+# Cache and logs
+bootstrap/cache/
+storage/logs/
+storage/framework/cache/
+storage/framework/sessions/
+storage/framework/views/
+
+# Build and distribution
+/node_modules/
+/dist/
+/build/
+/coverage/
+*.min.js
+*.min.css
+
+# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-*.tmp
 
-# OS generated files
+# OS
 .DS_Store
 Thumbs.db
 
-# Build artifacts
-dist/
-build/
-target/
-*.out
-*.exe
-*.dll
-*.so
-*.a
-
-# Python specific
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-*.egg-info/
-.eggs/
-
-# Compiled files
-*.class
-*.o
-*.obj
-*.a
-*.lib
-*.dylib
-*.jar
-*.war
-*.ear
-
-# Compressed files
-*.zip
-*.gz
-*.tar
-*.tgz
-*.bz2
-*.xz
-*.7z
-*.rar
-*.zst
-*.lz4
-*.lzh
-*.cab
-*.arj
-*.rpm
-*.deb
-*.Z
-*.lz
-*.lzo
-*.tar.gz
-*.tar.bz2
-*.tar.xz
-*.tar.zst
+# Testing
+.phpunit.result.cache
+.phpunit.xml
 ```
