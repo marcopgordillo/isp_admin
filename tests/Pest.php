@@ -15,8 +15,11 @@ use Tests\TestCase;
 */
 
 pest()->extend(TestCase::class)
- // ->use(RefreshDatabase::class)
+    ->uses(RefreshDatabase::class)
     ->in('Feature');
+
+pest()->extend(TestCase::class)
+    ->in('Unit');
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +36,22 @@ expect()->extend('toBeOne', function () {
     return $this->toBe(1);
 });
 
+expect()->extend('toBeBool', function () {
+    return $this->toBeBool();
+});
+
+expect()->extend('toBeFloat', function () {
+    return $this->toBeFloat();
+});
+
+expect()->extend('toStartWith', function ($needle) {
+    if (! is_string($this->value)) {
+        \PHPUnit\Framework\Assert::fail('Value is not a string.');
+    }
+
+    return $this->toBeStringStartingWith($needle);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Functions
@@ -44,7 +63,23 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function createTestTenant(string $name = 'Test ISP', string $email = 'test@isp.com')
 {
-    // ..
+    return \App\Models\Tenant::create([
+        'name' => $name,
+        'email' => $email,
+        'domain' => str($name)->slug().'.example.com',
+    ]);
+}
+
+function createTestCustomer(array $attributes = [])
+{
+    $tenant = $attributes['tenant_id'] ?? createTestTenant()->id;
+    
+    return \App\Models\Customer::create(array_merge([
+        'tenant_id' => $tenant,
+        'name' => 'Test Customer',
+        'email' => fake()->unique()->safeEmail(),
+        'status' => 'active',
+    ], $attributes));
 }

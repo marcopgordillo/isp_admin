@@ -1,29 +1,43 @@
-/.phpunit.cache
-/bootstrap/ssr
-/node_modules
-/public/build
-/public/fonts-manifest.dev.json
-/public/hot
-/public/storage
-/storage/*.key
-/storage/pail
-/resources/js/actions
-/resources/js/routes
-/resources/js/wayfinder
-/vendor
-.DS_Store
+```
+# Laravel-specific ignores
+vendor/
+composer.lock
 .env
-.env.backup
-.env.production
-.phpactor.json
+.env.local
+.env.*
+!.env.example
+
+# PHP
+*.php~
+*.php.bak
+*.phtml~
+
+# Cache and logs
+bootstrap/cache/
+storage/logs/
+storage/framework/cache/
+storage/framework/sessions/
+storage/framework/views/
+
+# Build and distribution
+/node_modules/
+/dist/
+/build/
+/coverage/
+*.min.js
+*.min.css
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
 .phpunit.result.cache
-Homestead.json
-Homestead.yaml
-npm-debug.log
-yarn-error.log
-/auth.json
-/.fleet
-/.idea
-/.nova
-/.vscode
-/.zed
+.phpunit.xml
+```
